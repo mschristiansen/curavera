@@ -20,7 +20,12 @@
       <span class="nav__brand-mark">Cura Vera</span>
       <span class="nav__brand-sub">Vera von Hacht</span>
     </a>
-    <nav class="nav__right">
+    <button class="nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+    <nav id="nav-menu" class="nav__right">
       <a href="#om" class="nav__link">Om mig</a>
       <a href="#ydelser" class="nav__link">Ydelser</a>
       <a href="#priser" class="nav__link">Priser</a>
@@ -293,6 +298,19 @@
     btn.addEventListener('click', function() {
       var open = item.classList.toggle('faq__item--open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  var nav = document.querySelector('.nav');
+  var toggle = nav.querySelector('.nav__toggle');
+  toggle.addEventListener('click', function() {
+    var open = nav.classList.toggle('nav--open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('.nav__link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      nav.classList.remove('nav--open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 </script>
